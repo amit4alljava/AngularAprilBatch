@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/angular.min.js"></script>
+    <script>
+        var calModule = angular.module("calcModule",[]);
+        // Singleton
+        // this is acting like a constructor function ,so it not
+        // return anything
+        // Service is Lazy
+        calModule.service("calcService",function(){
+            this.calcObject = {
+                x :100,
+                "add":function(firstNo, secondNo){
+                    return parseInt(firstNo) + parseInt(secondNo);
+                },
+                "subtract" :function (firstNo, secondNo){
+                    return firstNo - secondNo;
+                }
+            };
+           // return calcObject;
+        });
+        // factory acting as a normal function and it return something
+        // this contains logic and factory always return
+        // Factory is Eager
+        calModule.factory("calcFactory",function(){
+            var calcObject = {
+                x :100,
+            "add":function(firstNo, secondNo){
+                return parseInt(firstNo) + parseInt(secondNo);
+            },
+            "subtract" :function (firstNo, secondNo){
+                return firstNo - secondNo;
+            }
+        };
+            return calcObject;
+        });
+        // Controller is Acting as a Glue B/W Factory and View
+        calModule.controller("calcCtrl",function($scope,calcService){
+                $scope.add=function(){
+                    $scope.result= calcService.calcObject.add($scope.firstNo,$scope.secondNo);
+                   // $scope.result= calcFactory.add($scope.firstNo,$scope.secondNo);
+                    //$scope.result = parseInt($scope.firstNo)+parseInt($scope.secondNo);
+                }
+            $scope.subtract=function(){
+                $scope.result= calcService.calcObject.subtract($scope.firstNo,$scope.secondNo);
+              // $scope.result= calcFactory.subtract($scope.firstNo,$scope.secondNo);
+                //$scope.result = parseInt($scope.firstNo)+parseInt($scope.secondNo);
+            }
+        });
+    </script>
+</head>
+<body>
+<div ng-app="calcModule" ng-controller="calcCtrl">
+    <table>
+        <tr><td>FirstNo</td>
+            <td><input type="text" ng-model="firstNo"/></td></tr>
+        <tr><td>SecondNo</td>
+            <td><input type="text" ng-model="secondNo"/></td></tr>
+        <tr><td>Result</td>
+            <td><span>{{result}}</span></td></tr>
+        <tr><td colspan="2">
+            <button  ng-click="add()">Add</button>
+            <button ng-click="subtract()">Subtract</button>
+            <button>Multiply</button>
+            <button>Divide</button></td></tr>
+    </table>
+</div>
+</body>
+</html>
