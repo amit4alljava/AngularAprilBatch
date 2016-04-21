@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/angular.min.js"></script>
+    <script>
+        var app = angular.module("myapp",[]);
+        app.controller("myctrl1",function($scope,$rootScope){
+            $rootScope.firstname="Amit";
+            $rootScope.data = [{"name":"Amit","phone":22222,"city":"Delhi"},
+                {"name":"Ram","phone":33333,"city":"Mumbai"},
+                {"name":"Shyam","phone":44422,"city":"Delhi"}
+            ];
+        });
+        app.controller("myctrl2",function($scope){
+            $scope.lastname = "Srivastava";
+        });
+        app.controller("myctrl3",function($scope){
+            $scope.lastname ="Kumar";
+        });
+    </script>
+</head>
+<body ng-app="myapp">
+<div ng-controller="myctrl1">
+    <div ng-controller="myctrl2">
+        First Name :{{firstname}} and Last Name :{{lastname}}
+    </div>
+</div>
+<div ng-controller="myctrl3">
+    First Name :{{firstname}} and last name :{{lastname}}
+    <br>
+    Data is {{data}}
+    <ul ng-repeat="obj in data">
+        <li>{{obj.name|uppercase}} {{obj.phone}} {{obj.city|lowercase}}</li>
+    </ul>
+</div>
+</body>
+</html>

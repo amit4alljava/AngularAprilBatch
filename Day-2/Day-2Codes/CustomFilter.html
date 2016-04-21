@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/angular.min.js"></script>
+    <script>
+        var app = angular.module("myapp",[]);
+        app.filter("initcap",function(){
+            return function(a){
+                return a.charAt(0).toUpperCase() + a.slice(1).toLowerCase();
+            }
+        });
+    </script>
+</head>
+<body ng-app="myapp">
+{{'angularJS IS AweSomE'|initcap}}
+</body>
+</html>

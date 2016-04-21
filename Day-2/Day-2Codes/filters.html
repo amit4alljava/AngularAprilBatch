@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/angular.min.js"></script>
+    <script>
+        var app2 = angular.module("myfilterapp",[]);
+        app2.filter("initcap",function(){
+            return function(a){
+                return a.charAt(0).toUpperCase() + a.slice(1).toLowerCase();
+            }
+        });
+        var app = angular.module("myapp",["myfilterapp"]);
+        app.controller("ctrl",function($scope,$filter){
+            var today = new Date();
+            $scope.firstname = $filter('uppercase')('amit');
+            $scope.lastname = $filter('lowercase')('srivastava');
+            $scope.data = [{"id":1001,"name":"Ram","salary":99999,"today":today},
+                {"id":1002,"name":"Ram","salary":29999,"today":today},
+                {"id":1003,"name":"Ramesh","salary":39999,"today":today},
+                {"id":1000,"name":"Raju","salary":49999,"today":today},
+                {"id":1005,"name":"Amit","salary":69999,"today":today},
+                {"id":1004,"name":"Shyam","salary":19999,"today":today},
+                {"id":1006,"name":"Mike","salary":59999,"today":today}
+
+            ]
+            for(var i = 0 ; i<$scope.data.length;i++){
+                $scope.data[i].name=$filter('initcap')($scope.data[i].name);
+                /*if(i%2==0){
+                $scope.data[i].name = $filter('uppercase')($scope.data[i].name);
+                }
+                else
+                {
+                    $scope.data[i].name = $filter('lowercase')($scope.data[i].name);
+                }*/
+                }
+
+        });
+    </script>
+</head>
+<body ng-app="myapp" ng-controller="ctrl">
+FirstName is {{firstname}} and {{lastname}}
+<input type="text"  placeholder="Type Anything to Search" ng-model="searchTxt"/>
+<input type="text" ng-model="limitValue" placeholder="Type Limit"/>
+<table border="1">
+    <tr>
+        <th>Empno</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Today</th>
+    </tr>
+    <tr ng-repeat="obj in data|filter:searchTxt|limitTo:limitValue">
+        <td>{{obj.id}}</td>
+        <td>{{obj.name}}</td>
+        <td>{{obj.salary|currency:"Yen"}}</td>
+        <td>{{obj.today|date:'short'}}</td>
+    </tr>
+</table>
+</body>
+</html>
