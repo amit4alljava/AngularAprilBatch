@@ -1,0 +1,10 @@
+.completed{
+    color:red;
+    text-decoration: line-through;
+}
+li{
+    cursor: pointer;
+}
+h1,h2{
+    font-family: 'Arvo', serif;
+}

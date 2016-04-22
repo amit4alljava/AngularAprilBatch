@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Task Manager App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/custom.css"/>
+    <script src="../js/libs/angular.min.js"></script>
+    <script src="../js/factory/taskfactory.js"></script>
+    <script src="../js/app/app.js"></script>
+    <script src="../js/controller/taskcontroller.js"></script>
+</head>
+<body ng-app="taskmanagermodule" ng-controller="taskController">
+<div class="container">
+<h1>Task Manager Application</h1>
+<table class="table">
+    <tr>
+        <td><label >TaskName</label></td>
+        <td><input type="text" class="form-control" ng-model="taskName" placeholder="Type TaskName"/></td>
+    </tr>
+    <tr>
+        <td><label >TaskDesc</label></td>
+        <td><textarea rows="6" class="form-control" ng-model="taskDesc" cols="20" placeholder="Type TaskDesc"></textarea></td>
+    </tr>
+    <tr colspan="2">
+        <table class="table">
+            <tr>
+                <td><button class="btn btn-success" ng-click="addTask()">Add New Task</button></td>
+                <td><button class="btn btn-danger" ng-click="deleteTask()">Delete Completed Task</button></td>
+                <td><button class="btn btn-info" ng-click="saveTask()">Save Task</button></td>
+                <td><button class="btn btn-primary" ng-click="loadTask()">Load Task</button></td>
+                <td><input type="checkbox" ng-init="showSearch=false" ng-model="showSearch"/> Tick to Show Search
+                <div ng-show="showSearch">
+                    <input type="text" placeholder="Type to Search" ng-model="searchTxt"/>
+                </div>
+                </td>
+                <td><input type="checkbox" ng-model="showSort" ng-init="showSort=false"/> Tick to Show Sort
+                    <div ng-show="showSort">
+                        <input type="text" placeholder="Specify the field order " ng-model="order"/>
+                        <input type="text" placeholder="Specify the field name to sort" ng-model="fieldname"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </tr>
+</table>
+<h2>Task Completed ::{{countCompleted()}}   &nbsp;&nbsp;&nbsp; Task Pending::{{countPending()}} </h2>
+<fieldset>
+    <legend>Task List</legend>
+    <ul>
+        <li ng-repeat="obj in taskList|filter:searchTxt | orderBy:fieldname:order" ng-click="obj.toggleTask()" ng-class="{completed:obj.isCompleted}">
+            {{obj.name}}  {{obj.desc}}
+        </li>
+    </ul>
+</fieldset>
+</div>
+</body>
+</html>
