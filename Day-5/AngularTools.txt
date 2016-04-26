@@ -1,0 +1,17 @@
+1. Download and Install Node 
+node.org
+npm install -g npm (Update the Npm)
+2. node -v    npm -v
+3. install the yo
+npm install yo -g
+
+npm install bower -g  
+npm install grunt-cli -g
+npm install karma -g
+npm install -g generator-karma generator-angular
+yo angular:controller MyController
+yo angular:service MyService
+yo angular:view user 
+yo angular:filter MyFilter
+yo angular:directive MyDirective
+yo angular:route MyRoute
