@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="libs/jquery-1.12.3.min.js"></script>
+    <script src="libs/underscore-min.js"></script>
+    <script src="libs/backbone-min.js"></script>
+    <script>
+        var Employee = Backbone.Model.extend();
+
+        var EmployeeCollection = Backbone.Collection.extend({
+            model:Employee,
+            url:"employees.json?id=1001"
+        });
+        var empList = new EmployeeCollection();
+        empList.fetch({success:function(empColl){
+            console.log("Collection is ",empColl);
+            empColl.forEach(function(empObject){
+                console.log("Id "+empObject.get("id")
+                +" Name "+empObject.get("name")+
+                " Salary "+empObject.get("salary"));
+            })
+        },error:function(err){
+            console.log("Error is ",err);
+        }});
+    </script>
+</head>
+<body>
+
+</body>
+</html>

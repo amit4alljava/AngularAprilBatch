@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="libs/jquery-1.12.3.min.js"></script>
+    <script src="libs/underscore-min.js"></script>
+    <script src="libs/backbone-min.js"></script>
+
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    var EmployeeModel = Backbone.Model.extend();
+    var ram = new EmployeeModel({id:1001,name:"Ram",salary:9999});
+    var EmployeeCollection = Backbone.Collection.extend({
+        model:EmployeeModel
+    });
+    var empList = new EmployeeCollection();
+    empList.add(ram);
+
+    var EmployeeView = Backbone.View.extend({
+        events:{
+            "click":"doClick",
+            "click #b1":"print"
+        },
+        initialize:function(){
+            this.model.on("change",this.print,this);
+        },
+        doClick:function(){
+            alert("U Click on Button");
+        },
+        print:function(e){
+            /*if(e){
+            e.stopPropagation();
+            }*/
+            alert("U Click on Cancel "+this.model.get("id")
+            +" "+this.model.get("name")+" "+this.model.get("salary"));
+            this.$el.append("<h1>"+this.model.get("id")+" "+
+            this.model.get("name")+" "+this.model.get("salary")
+            +"</h1>"
+            );
+        },
+        // Rendering Logic
+        render:function(){
+            // $el is a JQuery Object which is used to do DOM Manipulation
+            this.$el.html("<button>Ok</button><button id='b1'>Cancel</button>");
+            this.$el.append("<h1> Model Updated::: "+this.model.get("id")+" "+
+                    this.model.get("name")+" "+this.model.get("salary")
+                    +"</h1>"
+            );
+            return this;
+        }
+    });
+    var empView = new EmployeeView({el:"#div1",model:ram});
+    empView.render();
+</script>
+</body>
+</html>

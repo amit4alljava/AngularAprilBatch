@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="libs/jquery-1.12.3.min.js"></script>
+    <script src="libs/underscore-min.js"></script>
+    <script src="libs/backbone-min.js"></script>
+    <script>
+
+        // Model is Defined
+        var Employee = Backbone.Model.extend({
+            urlRoot:"employee.json"
+        });
+        var ram = new Employee();
+        ram.fetch({success:function(data){
+            console.log("Data Has Been Fetched... ",data);
+            console.log(data.get("id")+" "+data.get("name")
+            +" Salary "+data.get("salary"));
+        },error:function(err){
+            console.log("Error in Data Fetch ",err);
+        }});
+
+        console.log(ram);
+
+    </script>
+</head>
+<body>
+<button >Show Employee</button>
+<h1 id="print"></h1>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="libs/jquery-1.12.3.min.js"></script>
+    <script src="libs/underscore-min.js"></script>
+    <script src="libs/backbone-min.js"></script>
+    <script>
+        var Account =Backbone.Model.extend({
+            roi:function(){
+                console.log("ROI is 6%");
+            },
+            withDraw:function(){
+                console.log("Account WithDraw Called..");
+            }
+        });
+        var SavingAccount = Account.extend({
+           roi:function(){
+               Account.prototype.roi.apply(this);
+               console.log("ROI is 9%");
+           }
+
+        });
+        var sa = new SavingAccount();
+        sa.roi();
+        sa.withDraw();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

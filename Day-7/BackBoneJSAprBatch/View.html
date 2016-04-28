@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="libs/jquery-1.12.3.min.js"></script>
+    <script src="libs/underscore-min.js"></script>
+    <script src="libs/backbone-min.js"></script>
+
+</head>
+<body>
+<div id="div1">
+
+</div>
+<script>
+    // Static View
+    var EmployeeView = Backbone.View.extend({
+        // Rendering Logic
+        render:function(){
+            // $el is a JQuery Object which is used to do DOM Manipulation
+            this.$el.html("Hello Backbone View");
+            return this;
+        }
+    });
+    var empView = new EmployeeView({el:"#div1"});
+    empView.render();
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="libs/jquery-1.12.3.min.js"></script>
+    <script src="libs/underscore-min.js"></script>
+    <script src="libs/backbone-min.js"></script>
+
+</head>
+<body>
+<div id="div1">
+
+</div>
+<script>
+    // Dynamic View
+    var Employee = Backbone.Model.extend(); // Model (Class)
+    var ram = new Employee({id:1001,name:"Ram",salary:9999}); // Object of Model
+    var shyam = new Employee({id:1002,name:"Shyam",salary:9999});
+    var mike = new Employee({id:1003,name:"Mike",salary:9999});
+
+    // Define a collection
+    var EmployeeCollection = Backbone.Collection.extend({
+        model:Employee
+    });
+    // filling the collection
+    var empList = new EmployeeCollection();
+    empList.add(ram);
+    empList.add(shyam);
+    empList.add(mike);
+
+    // Define a View which represent the Model thing (Row)
+    var EmployeeView = Backbone.View.extend({
+        // Rendering Logic
+        render:function(){
+            // $el is a JQuery Object which is used to do DOM Manipulation
+            this.$el.html(this.model.get("id")
+            +" "+this.model.get("name")+" "+this.model.get("salary")
+            );
+            return this;
+        }
+    });
+
+    // Represent Multiple Rows
+    var EmployeesView = Backbone.View.extend({
+        initialize:function(){
+            this.model.on("add",this.empAdd,this);
+        },
+        empAdd:function(){
+          var ev = new EmployeeView({model:ram});
+            this.$el.append(ev.render().$el);
+        },
+        render:function(){
+            var self = this;
+            this.model.each(function(empObject){
+                var ev = new EmployeeView({model:empObject});
+                self.$el.append(ev.render().$el);
+            });
+        }
+    });
+
+    var empView = new EmployeesView({el:"#div1",model:empList});
+    empView.render();
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="libs/jquery-1.12.3.min.js"></script>
+    <script src="libs/underscore-min.js"></script>
+    <script src="libs/backbone-min.js"></script>
+    <script>
+        $(document).ready(function(){
+           $("button").click(function(){
+            $("#print").html("Id "+ram.get("id")+" Name "+ram.get("name"))
+           }) ;
+        });
+        // Model is Defined
+        var Employee = Backbone.Model.extend({
+            initialize:function(){
+                console.log("Same Like a Constructor");
+                this.on("change",function(){
+                    console.log("Model has been changed");
+                })
+
+            },
+            defaults:{
+                bonus:9000
+            },
+            print:function(){
+                console.log("Print Called...");
+                console.log("Id ",this.id);
+                console.log("Name is ",this.get("name"));
+                console.log("City is ",this.get("city"));
+            },
+            validate:function(attrs){
+                if(!attrs.name){
+                    return "Name Can't Be Blank";
+                }
+
+            }
+
+
+
+
+        });
+        var ram = new Employee({id:1001,name:"Ram",city:"Delhi"});
+        ram.print();
+        var shyam = new Employee({id:1001,name:"Ram",city:"Delhi"});
+        console.log(ram instanceof  Employee);
+        console.log(ram);
+        console.log("Id is ",ram.get("id"));
+        console.log("Name is ",ram.get("name"));
+        console.log("City is ",ram.get("city"));
+        ram.set("salary",9000);
+        console.log("Salary is ",ram.get("salary"));
+
+    </script>
+</head>
+<body>
+<button >Show Employee</button>
+<h1 id="print"></h1>
+</body>
+</html>
