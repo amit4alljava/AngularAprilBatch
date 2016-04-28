@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;AngularWithJava/WebContent/js/angular.min (7).js&apos; to &apos;angular.min.js&apos;" description="Rename resource &apos;angular.min (7).js&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/js/angular.min (7).js" name="angular.min.js" stamp="1461815797697" updateReferences="true"/>
+</session>

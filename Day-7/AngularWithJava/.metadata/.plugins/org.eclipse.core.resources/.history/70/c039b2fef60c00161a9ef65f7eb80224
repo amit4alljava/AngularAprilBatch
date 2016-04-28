@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Page</title>
+<script src="js/angular.min.js"></script>
+</head>
+<body ng-app="loginapp" ng-controller="loginctrl">
+<form>
+UserName:<input type="text" ng-model="userid"><br>
+Password:<input type="password" ng-model="pwd"><br>
+<button ng-click="doLogin()">Login</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,9 @@
+var app = angular.module("loginapp",[]);
+app.factory("loginfactory",function(){
+	return {"logincheck":function(userid,pwd){
+		
+	}};
+});
+app.controller("loginctrl",function($scope){
+	
+})

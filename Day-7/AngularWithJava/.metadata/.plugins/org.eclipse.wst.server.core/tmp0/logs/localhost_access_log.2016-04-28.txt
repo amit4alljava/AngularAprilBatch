@@ -1,0 +1,10 @@
+127.0.0.1 - - [28/Apr/2016:09:44:45 +0530] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [28/Apr/2016:09:44:46 +0530] "GET /AngularWithJava/login.html HTTP/1.1" 200 430
+0:0:0:0:0:0:0:1 - - [28/Apr/2016:09:44:46 +0530] "GET /AngularWithJava/js/controller.js HTTP/1.1" 200 851
+0:0:0:0:0:0:0:1 - - [28/Apr/2016:09:44:46 +0530] "GET /AngularWithJava/js/angular.min.js HTTP/1.1" 200 157919
+0:0:0:0:0:0:0:1 - - [28/Apr/2016:09:44:53 +0530] "GET /AngularWithJava/login.html HTTP/1.1" 200 430
+0:0:0:0:0:0:0:1 - - [28/Apr/2016:09:44:53 +0530] "GET /AngularWithJava/js/controller.js HTTP/1.1" 200 851
+0:0:0:0:0:0:0:1 - - [28/Apr/2016:09:44:53 +0530] "GET /AngularWithJava/js/angular.min.js HTTP/1.1" 200 157919
+0:0:0:0:0:0:0:1 - - [28/Apr/2016:09:44:54 +0530] "GET /favicon.ico HTTP/1.1" 404 1016
+0:0:0:0:0:0:0:1 - - [28/Apr/2016:09:45:02 +0530] "POST /AngularWithJava/login?userid=amit&pwd=amit HTTP/1.1" 200 14
+0:0:0:0:0:0:0:1 - - [28/Apr/2016:09:45:08 +0530] "POST /AngularWithJava/login?userid=amit&pwd=amithfhfghgfhg HTTP/1.1" 200 28
