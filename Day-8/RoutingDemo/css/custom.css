@@ -1,0 +1,11 @@
+li{
+    cursor: pointer;
+    display: inline;
+    padding: 10px;
+    color: blue;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    text-align: center;
+    margin-right: 10px;
+}
